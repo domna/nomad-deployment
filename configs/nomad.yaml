@@ -1,18 +1,22 @@
 services:
   api_host: "localhost"
-  api_base_path: ""
+  api_base_path: "/nomad-oasis"
 
 oasis:
   is_oasis: true
   uses_central_user_management: true
 
 north:
+  enabled: true
   jupyterhub_crypt_key: "3cb3385c41910512eb87dce6a01c04345fcf4948bf9793c5c30c8e014e8bee1d"
 
 meta:
   deployment: "oasis"
   deployment_url: "https://my-oasis.org/api"
   maintainer_email: "me@my-oasis.org"
+
+logstash:
+  enable: false
 
 mongo:
   db_name: nomad_oasis_v1
