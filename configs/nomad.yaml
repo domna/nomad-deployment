@@ -9,6 +9,45 @@ oasis:
 north:
   enabled: true
   jupyterhub_crypt_key: "3cb3385c41910512eb87dce6a01c04345fcf4948bf9793c5c30c8e014e8bee1d"
+  tools: 
+    include:
+      - mpes
+      - mpesjupyter
+    options:
+      mpes:
+        short_description: A webtop container for ARPES analysis.
+        description: A webtop container for ARPES analysis.
+        image: gitlab-registry.mpcdf.mpg.de/nomad-lab/north/mpes/webtop:main
+        mount_path: /config
+        privileged: 1
+        file_extensions:
+          - ipynb
+          - nxs
+          - h5
+          - hdf5
+        external_mounts:
+          - host_path: /Users/domna/fairmat/nomad-deployment/local_folder
+            bind: local_folder
+            mode: rw
+        maintainer:
+          - name: Florian Dobener
+            email: florian.dobener@physik.hu-berlin.de
+      mpesjupyter:
+        short_description: A jupyter container for ARPES analysis.
+        description: A jupyter container for ARPES analysis.
+        image: gitlab-registry.mpcdf.mpg.de/nomad-lab/north/mpes/jupyter:main
+        mount_path: /home/jovyan
+        icon: jupyter_logo.svg
+        file_extensions:
+          - ipynb
+        external_mounts:
+          - host_path: /Users/domna/fairmat/nomad-deployment/local_folder
+            bind: local_folder
+            mode: rw
+        maintainer:
+          - name: Florian Dobener
+            email: florian.dobener@physik.hu-berlin.de
+
 
 meta:
   deployment: "oasis"
